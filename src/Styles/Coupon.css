@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&display=swap');
+
+.font-dm-serif {
+  font-family: "DM Serif Display", serif;
+}
+
+@media (max-width: 768px) {
+  .coupon-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .coupon-text-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .coupon-text-container h2,
+  .coupon-text-container h3 {
+    white-space: normal;
+  }
+}
+
+
+.font-dm-serif {
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
+
+.coupon-icon-shadow {
+  filter: drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.25));
+}

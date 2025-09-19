@@ -1,0 +1,145 @@
+/* Footer2.css - final tuned styles to match screenshot exactly */
+
+/* background & top hairline */
+.footer-bg {
+  background: #0d263c;
+  border-top: 6px solid rgba(255,255,255,0.02);
+}
+
+/* container right padding amplified to match screenshot spacing */
+.container { padding-right: 56px; }
+
+/* Logo */
+.logo-img {
+  height: 56px; /* larger logo as requested */
+  width: auto;
+  display: block;
+}
+
+/* description beneath logo */
+.desc {
+  color: #d1dbe3;
+  font-size: 15px;           /* bigger than default */
+  line-height: 1.7;
+  max-width: 220px;          /* keeps left column narrow like screenshot */
+  margin-top: 8px;
+  text-transform: none;
+}
+
+/* column headings */
+.col-heading {
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+/* smaller heading variant */
+.small-heading { font-size: 14px; margin-bottom: 6px; }
+
+/* Newsletter heading emphasis */
+.newsletter-heading { line-height: 1.05; white-space: normal; }
+.bold-20 { font-weight: 900; }
+
+/* prevent wrapping of newsletter heading + paragraph on medium and larger screens */
+@media (min-width: 768px) {
+  .newsletter-heading,
+  .newsletter-para {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* lists */
+.col-list { list-style: none; padding: 0; margin: 0; }
+.col-list li { margin-bottom: 12px; }
+.col-list a { color: #bfcfe0; text-decoration: none; font-size: 14px; transition: color .15s ease; }
+.col-list a:hover { color: #ffffff; }
+
+/* newsletter input + button */
+.newsletter-form {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  max-width: 420px;    /* matches screenshot width */
+  width: 100%;
+}
+
+.subscribe-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px 0 0 6px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+  font-size: 14px;
+}
+.subscribe-input::placeholder { color: #9ca3af; }
+
+.subscribe-btn {
+  padding: 10px 14px;
+  background: #7c7f87;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  transition: background-color .15s ease, transform .08s ease;
+}
+.subscribe-btn:hover { background:#f97316; transform: translateY(-2px); }
+
+/* social icons */
+.social-row { display:flex; gap:12px; align-items:center; margin-top:6px; }
+.social-circle {
+  width:44px; height:44px; border-radius:9999px;
+  display:inline-flex; align-items:center; justify-content:center;
+  background: rgba(255,255,255,0.06);
+  transition: transform .16s ease, background-color .16s ease;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.12) inset;
+}
+.social-circle .icon { width:18px; height:18px; stroke:#ffffff; }
+
+/* small white P square inside circle */
+.p-letter { display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; background:#ffffff; color:#1f2937; font-weight:800; font-size:11px; border-radius:3px; }
+
+/* hover brand colors */
+.social-circle.fb:hover { background:#3b5998; transform:scale(1.06); }
+.social-circle.ig:hover { background:#d63384; transform:scale(1.06); }
+.social-circle.tw:hover { background:#1da1f2; transform:scale(1.06); }
+.social-circle.pin:hover { background:#bd081c; transform:scale(1.06); }
+.social-circle.yt:hover { background:#ff0000; transform:scale(1.06); }
+
+/* footer bottom area */
+.copyright { color:#c7d4df; font-size:13px; }
+
+/* payment badges */
+.payment-badge {
+  padding:6px 10px; border-radius:6px; font-weight:800; font-size:12px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08) inset;
+}
+.payment-badge.visa { background:#ffffff; color:#1a1f71; }
+.payment-badge.rupay { background:#f97316; color:#fff; }
+.payment-badge.discover { background:#fb923c; color:#fff; }
+.payment-badge.paypal { background:#003087; color:#fff; }
+
+/* responsive tweaks */
+@media (max-width: 1024px) {
+  .desc { max-width: 260px; font-size:14px; }
+  .newsletter-form { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .container { padding-right: 24px; }
+  .col-heading { font-size:15px; }
+  .desc { max-width:none; font-size:14px; }
+  .newsletter-form { width:100%; }
+  .subscribe-input { border-radius:6px; }
+  .subscribe-btn { border-radius:6px; margin-left:8px; }
+  /* allow wrapping on small screens */
+  .newsletter-heading, .newsletter-para { white-space: normal; overflow: visible; text-overflow: clip; }
+}

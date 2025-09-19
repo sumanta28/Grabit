@@ -1,0 +1,15 @@
+
+.track-anim {
+  transition: transform 320ms cubic-bezier(.2,.9,.19,1);
+  will-change: transform;
+}
+
+
+section.w-full {
+  margin-top: 0;
+}
+
+
+.track-anim :focus {
+  outline: none;
+}
