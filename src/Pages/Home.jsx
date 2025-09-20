@@ -6,18 +6,20 @@ import Cards2 from '../Components/Cards2'
 import Brand from '../Components/Brand'
 import Categories from '../Components/Categories'
 import PriceDrop from '../Components/PriceDrop'
+import Seo from "../Components/Seo"
 
 
 const Home = () => {
   return (
-    <div>    
-    <Hero/>
-    <Cards/>
-    <Coupon/>
-    <Cards2/>
-    <Brand/>
-    <Categories/>
-    <PriceDrop/>
+    <div>
+      <Seo/>
+      <Hero />
+      <Cards />
+      <Coupon />
+      <Cards2 />
+      <Brand />
+      <Categories />
+      <PriceDrop />
     </div>
   )
 }
