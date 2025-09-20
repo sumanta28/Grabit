@@ -1,7 +1,5 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import '../Styles/Cards.css';
-
-
 import card1 from '../assets/Home/Cards/card1.png';
 import card2 from '../assets/Home/Cards/card2.png';
 import card3 from '../assets/Home/Cards/card3.png';

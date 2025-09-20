@@ -1,14 +1,13 @@
 import './App.css'
-import Home from './Pages/Home'
 import Routing from './Routing/Routing'
+import Wrapper from './Layout/Wrapper/Wrapper'
 
 function App() {
 
-
   return (
-    <>
-    <Routing/>
-      </>
+    <Wrapper>
+      <Routing />
+    </Wrapper>
   )
 }
 

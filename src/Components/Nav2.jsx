@@ -40,7 +40,7 @@ const Nav2 = () => {
           <nav className="myaccount" aria-label="User menu">
             <ul className="nav-links">
               <li>
-                <a href="#" aria-label="Account">
+                <a href="/login" aria-label="Account">
                   <User size={22} strokeWidth={1.8} className="nav-icon" />
                   <span>Account</span>
                 </a>

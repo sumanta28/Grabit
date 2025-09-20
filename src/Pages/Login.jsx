@@ -5,6 +5,8 @@ import * as yup from "yup";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../lib/axiosInstance";
 import { toast } from "sonner";
+import GoogleIcon from "../assets/icons/GoogleIcon.png";
+import FacebookIcon from "../assets/icons/FacebookIcon.png";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -50,6 +52,7 @@ export default function LoginPage() {
   };
 
   return (
+    
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 p-4 md:p-12 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -145,14 +148,14 @@ export default function LoginPage() {
                 href="https://www.google.com"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-xl hover:border-gray-300 hover:shadow-lg transition-all duration-300 text-sm font-medium transform hover:scale-105 hover:bg-gray-50"
               >
-                <img src="/image/Symbol.svg.png" alt="google" className="w-5 h-5" />
+                <img src={GoogleIcon} alt="google" className="w-5 h-5" />
                 Google
               </a>
               <a
                 href="https://www.facebook.com"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-xl hover:border-gray-300 hover:shadow-lg transition-all duration-300 text-sm font-medium transform hover:scale-105 hover:bg-gray-50"
               >
-                <img src="/image/Symbol.svg (1).png" alt="facebook" className="w-5 h-5" />
+                <img src={FacebookIcon} alt="facebook" className="w-5 h-5" />
                 Facebook
               </a>
             </div>
@@ -161,7 +164,7 @@ export default function LoginPage() {
             <div className="text-center mt-6 space-y-3">
               <p className="text-sm text-gray-600">
                 Don't have an account?{" "}
-                <a href="/register" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 hover:underline">
+                <a href="/signup" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 hover:underline">
                   Signup
                 </a>
               </p>

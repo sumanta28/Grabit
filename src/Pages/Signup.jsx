@@ -6,6 +6,8 @@ import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../lib/axiosInstance";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import GoogleIcon from "../assets/icons/GoogleIcon.png";
+import FacebookIcon from "../assets/icons/FacebookIcon.png";
 
 const validationSchema = yup.object({
   name: yup
@@ -314,14 +316,14 @@ export default function RegisterPage() {
                             href="https://www.google.com"
                             className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 text-gray-700 rounded-lg hover:border-gray-300 hover:shadow-lg transition-all duration-300 text-xs font-medium transform hover:scale-105 hover:bg-gray-50"
                         >
-                            <img src="/image/Symbol.svg.png" alt="google" className="w-4 h-4" />
+                            <img src={GoogleIcon} alt="google" className="w-4 h-4" />
                             Google
                         </a>
                         <a
                             href="https://www.facebook.com"
                             className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 text-gray-700 rounded-lg hover:border-gray-300 hover:shadow-lg transition-all duration-300 text-xs font-medium transform hover:scale-105 hover:bg-gray-50"
                         >
-                            <img src="/image/Symbol.svg (1).png" alt="facebook" className="w-4 h-4" />
+                            <img src={FacebookIcon} alt="facebook" className="w-4 h-4" />
                             Facebook
                         </a>
                     </div>
