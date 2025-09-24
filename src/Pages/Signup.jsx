@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -10,73 +10,53 @@ import GoogleIcon from "../assets/icons/GoogleIcon.png";
 import FacebookIcon from "../assets/icons/FacebookIcon.png";
 
 const validationSchema = yup.object({
-  name: yup
-    .string()
-    .matches(/^[A-Za-z\s]+$/, "Name must only contain letters")
-    .required("Name is required"),
+  name: yup.string().required("Name is required"),
+  email: yup.string().email().required("Email is required"),
+  password: yup.string().min(8).required("Password is required"),
 
-  email: yup
-    .string()
-    .email("Invalid email format")
-    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email address")
-    .required("Email is required"),
-
-  password: yup
-    .string()
-    .matches(
-      /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/,
-      "Password must be at least 8 characters and include at least one special symbol"
-    )
-    .required("Password is required"),
-
-  phone: yup.string().when([], {
-    is: (_, context) => context?.role === "buyer",
-    then: (schema) =>
-      schema
-        .matches(/^[6-9]\d{9}$/, "Enter a valid Indian phone number")
-        .required("Phone number is required"),
+  phone: yup.string().when("$role", {
+    is: "buyer",
+    then: (s) => s.matches(/^[6-9]\d{9}$/, "Invalid phone").required(),
+  }),
+  address: yup.string().when("$role", {
+    is: "buyer",
+    then: (s) => s.min(5).required(),
   }),
 
-  address: yup.string().when([], {
-    is: (_, context) => context?.role === "buyer",
-    then: (schema) =>
-      schema.min(5, "Address must be at least 5 characters").required("Address is required"),
+  shopName: yup.string().when("$role", {
+    is: "vendor",
+    then: (s) => s.required(),
   }),
-
-  shopName: yup.string().when([], {
-    is: (_, context) => context?.role === "vendor",
-    then: (schema) =>
-      schema
-        .matches(/^[A-Za-z0-9\s]+$/, "Shop name must be alphanumeric")
-        .required("Shop name is required"),
-  }),
-
-  businessCity: yup.string().when([], {
-    is: (_, context) => context?.role === "vendor",
-    then: (schema) =>
-      schema
-        .matches(/^[A-Za-z\s]+$/, "Business city must only contain letters")
-        .required("Business city is required"),
+  businessCity: yup.string().when("$role", {
+    is: "vendor",
+    then: (s) => s.required(),
   }),
 
   gst: yup
     .string()
-    .matches(
-      /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/,
-      "Enter a valid GST number"
-    )
-    .nullable(),
+    .notRequired()
+    .nullable()
+    .test("gst-format", "Enter a valid GST number", (value) => {
+      if (!value) return true;
+      return /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(value);
+    }),
 });
+
 
 export default function RegisterPage() {
     const [role, setRole] = useState("buyer");
     const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(validationSchema),
-        context: { role },
-        defaultValues: { role: "buyer" },
-    });
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({ 
+  resolver: yupResolver(validationSchema),
+  context: { role },
+  defaultValues: { role: "buyer" },
+});
+
+useEffect(() => {
+  reset({}, { keepValues: true, keepContext: true });
+}, [role, reset]);
+
 
     const registerMutation = useMutation({
         mutationFn: async (formData) => {
@@ -107,9 +87,16 @@ export default function RegisterPage() {
             payload.shopName = data.shopName;
             payload.businessCity = data.businessCity;
             payload.gst = data.gst;
+            console.log("Form submitted ✅", data);
+
+             if (data.gst && data.gst.trim() !== "") {
+      payload.gst = data.gst;
+    }
         }
 
+        console.log("Payload being sent 🚀", payload);
         registerMutation.mutate(payload);
+       
     };
 
     return (

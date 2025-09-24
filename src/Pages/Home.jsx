@@ -8,7 +8,6 @@ import Categories from '../Components/Categories'
 import PriceDrop from '../Components/PriceDrop'
 import Seo from "../Components/Seo"
 
-
 const Home = () => {
   return (
     <div>
