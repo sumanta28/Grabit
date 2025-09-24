@@ -59,7 +59,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('men')}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#">Men</a>
+            <link to="#">Men</link>
             <ul className={`dropdown-content ${activeDropdown === 'men' ? 'show' : ''}`}>
               {menuItems.men.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -72,7 +72,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('women')}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#">Women</a>
+            <link to="#">Women</link>
             <ul className={`dropdown-content ${activeDropdown === 'women' ? 'show' : ''}`}>
               {menuItems.women.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -85,7 +85,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('kids')}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#">Kids</a>
+            <link to="#">Kids</link>
             <ul className={`dropdown-content ${activeDropdown === 'kids' ? 'show' : ''}`}>
               {menuItems.kids.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -98,7 +98,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('homeDecor')}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#">Home Decor</a>
+            <link to="#">Home Decor</link>
             <ul className={`dropdown-content ${activeDropdown === 'homeDecor' ? 'show' : ''}`}>
               {menuItems.homeDecor.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -111,7 +111,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('electronics')}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#">Electronics</a>
+            <link to="#">Electronics</link>
             <ul className={`dropdown-content ${activeDropdown === 'electronics' ? 'show' : ''}`}>
               {menuItems.electronics.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -120,8 +120,8 @@ const Nav3 = () => {
           </li>
 
           <div className="vendor">
-            <li><a href="#">Become a Vendor</a></li>
-            <li><a href="#">Download App</a></li>
+            <li><link to="#">Become a Vendor</link></li>
+            <li><link to="#">Download App</link></li>
           </div>
         </ul>
       </div>

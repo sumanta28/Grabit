@@ -144,36 +144,36 @@ export default function LoginPage() {
 
             {/* Enhanced Social Buttons */}
             <div className="flex justify-center gap-3">
-              <a
-                href="https://www.google.com"
+              <link
+                to="https://www.google.com"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-xl hover:border-gray-300 hover:shadow-lg transition-all duration-300 text-sm font-medium transform hover:scale-105 hover:bg-gray-50"
               >
                 <img src={GoogleIcon} alt="google" className="w-5 h-5" />
                 Google
-              </a>
-              <a
-                href="https://www.facebook.com"
+              </link>
+              <link
+                to="https://www.facebook.com"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 text-gray-700 rounded-xl hover:border-gray-300 hover:shadow-lg transition-all duration-300 text-sm font-medium transform hover:scale-105 hover:bg-gray-50"
               >
                 <img src={FacebookIcon} alt="facebook" className="w-5 h-5" />
                 Facebook
-              </a>
+              </link>
             </div>
 
             {/* Enhanced Footer Links */}
             <div className="text-center mt-6 space-y-3">
               <p className="text-sm text-gray-600">
                 Don't have an account?{" "}
-                <a href="/signup" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 hover:underline">
+                <link to="/signup" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300 hover:underline">
                   Signup
-                </a>
+                </link>
               </p>
 
               <p className="text-xs text-gray-500 leading-relaxed">
                 By continuing, you agree to Grabit{" "}
-                <a href="#" className="text-orange-600 hover:text-orange-700 transition-colors duration-300 font-medium hover:underline">
+                <link to="#" className="text-orange-600 hover:text-orange-700 transition-colors duration-300 font-medium hover:underline">
                   Terms of Use
-                </a>{" "}
+                </link>{" "}
                 and{" "}
                 <a href="#" className="text-orange-600 hover:text-orange-700 transition-colors duration-300 font-medium hover:underline">
                   Privacy Policy
