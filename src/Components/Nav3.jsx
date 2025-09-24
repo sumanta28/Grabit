@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/Nav3.css';
+import {Link} from "react-router-dom"
 
 const Nav3 = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -53,13 +54,13 @@ const Nav3 = () => {
   return (
     <nav className="navigationbar">
       <div className="container">
-        <ul className="nav-links1">
+        <ul className="nav-Links1">
           <li 
             className={`dropdown ${activeDropdown === 'men' ? 'active' : ''}`}
             onMouseEnter={() => handleMouseEnter('men')}
             onMouseLeave={handleMouseLeave}
           >
-            <link to="#">Men</link>
+            <Link to="#">Men</Link>
             <ul className={`dropdown-content ${activeDropdown === 'men' ? 'show' : ''}`}>
               {menuItems.men.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -72,7 +73,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('women')}
             onMouseLeave={handleMouseLeave}
           >
-            <link to="#">Women</link>
+            <Link to="#">Women</Link>
             <ul className={`dropdown-content ${activeDropdown === 'women' ? 'show' : ''}`}>
               {menuItems.women.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -85,7 +86,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('kids')}
             onMouseLeave={handleMouseLeave}
           >
-            <link to="#">Kids</link>
+            <Link to="#">Kids</Link>
             <ul className={`dropdown-content ${activeDropdown === 'kids' ? 'show' : ''}`}>
               {menuItems.kids.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -98,7 +99,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('homeDecor')}
             onMouseLeave={handleMouseLeave}
           >
-            <link to="#">Home Decor</link>
+            <Link to="#">Home Decor</Link>
             <ul className={`dropdown-content ${activeDropdown === 'homeDecor' ? 'show' : ''}`}>
               {menuItems.homeDecor.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -111,7 +112,7 @@ const Nav3 = () => {
             onMouseEnter={() => handleMouseEnter('electronics')}
             onMouseLeave={handleMouseLeave}
           >
-            <link to="#">Electronics</link>
+            <Link to="#">Electronics</Link>
             <ul className={`dropdown-content ${activeDropdown === 'electronics' ? 'show' : ''}`}>
               {menuItems.electronics.map((item, index) => (
                 <li key={index}><a href="#">{item}</a></li>
@@ -120,8 +121,8 @@ const Nav3 = () => {
           </li>
 
           <div className="vendor">
-            <li><link to="#">Become a Vendor</link></li>
-            <li><link to="#">Download App</link></li>
+            <li><Link to="#">Become a Vendor</Link></li>
+            <li><Link to="#">Download App</Link></li>
           </div>
         </ul>
       </div>

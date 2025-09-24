@@ -12,9 +12,9 @@ const Nav2 = () => {
         <div className="content">
 
           <div className="logo">
-            <a href="/">
+            <Link to="/">
               <img src={logo} alt="Grabit logo" loading="lazy" />
-            </a>
+            </Link>
           </div>
 
           <form
@@ -57,21 +57,21 @@ const Nav2 = () => {
               </li>
 
               <li>
-                <a href="#" aria-label="Wishlist">
+                <Link to="#" aria-label="Wishlist">
                   <Heart size={22} strokeWidth={1.8} className="nav-icon" />
                   <span>Wishlist</span>
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="#" aria-label="Cart">
+                <Link to="#" aria-label="Cart">
                   <ShoppingCart
                     size={22}
                     strokeWidth={1.8}
                     className="nav-icon"
                   />
                   <span>Add to Cart</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
