@@ -2,13 +2,15 @@ import React from "react";
 import "../Styles/Nav2.css";
 import logo from "../assets/Home/logo.png";
 import { Search, User, Bell, Heart, ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
+
 
 const Nav2 = () => {
   return (
     <header className="searchbar">
       <div className="container">
         <div className="content">
-       
+
           <div className="logo">
             <a href="/">
               <img src={logo} alt="Grabit logo" loading="lazy" />
@@ -36,14 +38,15 @@ const Nav2 = () => {
             </button>
           </form>
 
-          
+
           <nav className="myaccount" aria-label="User menu">
             <ul className="nav-links">
               <li>
-                <a href="/login" aria-label="Account">
+                <Link to="/login" aria-label="Account">
                   <User size={22} strokeWidth={1.8} className="nav-icon" />
                   <span>Account</span>
-                </a>
+                </Link>
+
               </li>
 
               <li>
