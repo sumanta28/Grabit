@@ -18,6 +18,7 @@ function Routing() {
   <Route path="/login" element={<Login />} />
   <Route path="/signup" element={<Signup />} />
 
+
   {/* Vendor only pages */}
   <Route path="/Vendor/VendorDashboardPage" element={<VendorDashboardPage />} />
   <Route path="/Vendor/VendorProductsPage" element={<VendorProductsPage />} />

@@ -90,11 +90,11 @@ export default function VendorProductsPage() {
               key={product._id}
               className="bg-white shadow rounded-lg p-4 flex flex-col"
             >
-              <img
+              {/* <img
                 src={product.image ? getImg(product.image) : "/placeholder.png"}
                 alt={product.name}
                 className="h-48 w-full object-cover rounded mb-4"
-              />
+              /> */}
 
               <h3 className="font-semibold text-lg">{product.name}</h3>
               <p className="text-gray-500">₹{product.price}</p>

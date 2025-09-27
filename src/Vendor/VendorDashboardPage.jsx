@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useVendorStore } from "../lib/vendorStore"; // adjust path
-// import { getImg } from "../lib/utils"; // adjust path
-
+import { useVendorStore } from "../lib/vendorStore"; 
 function VendorDashboardPage() {
   const { vendor, products, fetchVendorData, deleteProduct } = useVendorStore();
   const [loading, setLoading] = useState(true);
@@ -38,11 +36,6 @@ function VendorDashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {products.map((p) => (
               <div key={p._id} className="bg-white shadow rounded-lg p-4">
-                <img
-                  src={p.image ? getImg(p.image) : "/placeholder.png"}
-                  alt={p.name}
-                  className="h-40 w-full object-cover rounded"
-                />
                 <h3 className="font-semibold mt-2">{p.name}</h3>
                 <p>₹{p.price}</p>
                 <div className="mt-2 flex gap-2">
