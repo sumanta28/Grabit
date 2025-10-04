@@ -69,15 +69,19 @@ export default function VendorProductsPage() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       {/* Create or Edit Product Form */}
-      {editingProduct ? (
-        <EditProductForm
-          product={editingProduct}
-          onUpdate={handleUpdate}
-          onCancel={() => setEditingProduct(null)}
-        />
-      ) : (
-        <ProductForm />
-      )}
+     {editingProduct ? (
+  <ProductForm
+    product={editingProduct}
+    onSuccess={() => {
+      setEditingProduct(null);
+      fetchProducts();
+    }}
+    onCancel={() => setEditingProduct(null)}
+  />
+) : (
+  <ProductForm onSuccess={fetchProducts} />
+)}
+
 
       <h2 className="text-2xl font-bold mt-8 mb-4">Your Products</h2>
 
