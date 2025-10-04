@@ -254,12 +254,14 @@ export default function VendorProductsPage() {
               <h3 className="font-semibold text-lg">{product.name}</h3>
               <p className="text-gray-500">₹{product.price}</p>
               <p className="text-gray-500">Stock: {product.stock}</p>
+              {product.description && (
+                <p className="text-gray-700 mt-1">{product.description}</p>
+              )}
               <p
-                className={`mt-2 font-semibold ${
-                  product.status === "approved"
+                className={`mt-2 font-semibold ${product.status === "approved"
                     ? "text-green-600"
                     : "text-red-600"
-                }`}
+                  }`}
               >
                 {product.status.toUpperCase()}
               </p>
