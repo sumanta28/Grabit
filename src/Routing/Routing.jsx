@@ -7,6 +7,7 @@ import ProductForm from "../Vendor/ProductForm.jsx";
 import VendorProductsPage from "../Vendor/VendorProductsPage.jsx";
 import Profile from "../Vendor/Profile.jsx";
 import Orders from "../Vendor/Orders.jsx";
+import CategoryForm from "../Vendor/CategoryForm.jsx"
 
 
 function Routing() {
@@ -25,9 +26,10 @@ function Routing() {
   <Route path="/Vendor/Profile" element={<Profile />} />
   <Route path="/Vendor/ProductForm" element={<ProductForm />} />
   <Route path="/Vendor/Orders" element={<Orders />} />
+  <Route path="/Vendor/CategoryForm" element={<CategoryForm/>}></Route>
 </Routes>
 
-    </>
+    </> 
   );
 }
 
