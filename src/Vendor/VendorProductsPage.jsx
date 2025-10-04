@@ -166,6 +166,7 @@ export default function VendorProductsPage() {
     }
   };
 
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -257,10 +258,12 @@ export default function VendorProductsPage() {
               {product.description && (
                 <p className="text-gray-700 mt-1">{product.description}</p>
               )}
+            <p>Category: {typeof product.category === "object" ? product.category.name : product.category.name}</p>
+
               <p
                 className={`mt-2 font-semibold ${product.status === "approved"
-                    ? "text-green-600"
-                    : "text-red-600"
+                  ? "text-green-600"
+                  : "text-red-600"
                   }`}
               >
                 {product.status.toUpperCase()}

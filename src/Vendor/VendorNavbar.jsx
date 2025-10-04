@@ -9,6 +9,7 @@ export default function VendorNavbar() {
       <Link to="/Vendor/Orders" className="hover:text-blue-400">Orders</Link>
       <Link to="/Vendor/Profile" className="hover:text-blue-400">Profile</Link>
       <Link to="/vendor/CategoryForm" className="hover:text-blue-400">Create Categories</Link>
+      <Link to="/vendor/VendorCategoriesPage" className="hover:text-blue-400">All Categories</Link>
        <div className="ml-auto">
         <VendorLogout />
       </div>

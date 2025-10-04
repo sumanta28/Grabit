@@ -1,128 +1,201 @@
-import React, { useState } from 'react';
-import '../Styles/Nav3.css';
-import {Link} from "react-router-dom"
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+// import "../Styles/Nav3.css";
+
+// const Nav3 = () => {
+//   const [activeDropdown, setActiveDropdown] = useState(null);
+
+//   const handleMouseEnter = (dropdown) => setActiveDropdown(dropdown);
+//   const handleMouseLeave = () => setActiveDropdown(null);
+
+//   const menuItems = {
+//     men: [
+//       "Topware",
+//       "Indian & Festive Ware",
+//       "Bottomware",
+//       "Footwear",
+//       "Fashion Accessories",
+//     ],
+//     women: [
+//       "Indian & Fusion ware",
+//       "Western & Indo-western ware",
+//       "Footwear",
+//       "Jwellery & Accessories",
+//       "Beauty and Personal Care",
+//     ],
+//     kids: [
+//       "Boys Clothing & Footwear",
+//       "Girls Clothing & Footwear",
+//       "Kids Accessories",
+//       "Toy & Games",
+//       "Kids Personal Care",
+//     ],
+//     homeDecor: [
+//       "Furniture & Storage",
+//       "Dining Decor",
+//       "Kitchen Decor",
+//       "Lamps & Lighting",
+//       "Indoor Plants",
+//     ],
+//     electronics: [
+//       "Mobile & Headphones",
+//       "Laptop & Desktop",
+//       "Smart wearables",
+//       "Camera & Accessories",
+//       "Home Appliances",
+//     ],
+//   };
+
+//   const formatPath = (category, item) => {
+//     const cat = category.toLowerCase();
+//     const sub = item.replace(/\s+/g, "-").toLowerCase();
+//     return `/category/${cat}/${sub}`;
+//   };
+
+//   return (
+//     <nav className="navigationbar">
+//       <div className="container">
+//         <ul className="nav-links1">
+//           {Object.keys(menuItems).map((category) => (
+//             <li
+//               key={category}
+//               className={`dropdown ${activeDropdown === category ? "active" : ""}`}
+//               onMouseEnter={() => handleMouseEnter(category)}
+//               onMouseLeave={handleMouseLeave}
+//             >
+//               <Link to={`/category/${category.toLowerCase()}`}>
+//                 {category.charAt(0).toUpperCase() + category.slice(1)}
+//               </Link>
+//               <ul
+//                 className={`dropdown-content ${
+//                   activeDropdown === category ? "show" : ""
+//                 }`}
+//               >
+//                 {menuItems[category].map((item, index) => (
+//                   <li key={index}>
+//                     <Link to={formatPath(category, item)}>{item}</Link>
+//                   </li>
+//                 ))}
+//               </ul>
+//             </li>
+//           ))}
+
+//           <div className="vendor">
+//             <li>
+//               <Link to="#">Become a Vendor</Link>
+//             </li>
+//             <li>
+//               <Link to="#">Download App</Link>
+//             </li>
+//           </div>
+//         </ul>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Nav3;
+
+
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../Styles/Nav3.css";
 
 const Nav3 = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
-  const handleMouseEnter = (dropdown) => {
-    setActiveDropdown(dropdown);
-  };
-
-  const handleMouseLeave = () => {
-    setActiveDropdown(null);
-  };
+  const handleMouseEnter = (dropdown) => setActiveDropdown(dropdown);
+  const handleMouseLeave = () => setActiveDropdown(null);
 
   const menuItems = {
     men: [
-      'Topware',
-      'Indian & Festive Ware',
-      'Bottomware',
-      'Footwear',
-      'Fashion Accessories'
+      "Topware",
+      "Indian & Festive Ware",
+      "Bottomware",
+      "Footwear",
+      "Fashion Accessories",
     ],
     women: [
-      'Indian & Fusion ware',
-      'Western & Indo-western ware',
-      'Footwear',
-      'Jwellery & Accessories',
-      'Beauty and Personal Care'
+      "Indian & Fusion ware",
+      "Western & Indo-western ware",
+      "Footwear",
+      "Jwellery & Accessories",
+      "Beauty and Personal Care",
     ],
     kids: [
-      'Boys Clothing & Footwear',
-      'Girls Clothing & Footwear',
-      'Kids Accessories',
-      'Toy & Games',
-      'Kids Personal Care'
+      "Boys Clothing & Footwear",
+      "Girls Clothing & Footwear",
+      "Kids Accessories",
+      "Toy & Games",
+      "Kids Personal Care",
     ],
     homeDecor: [
-      'Furniture & Storage',
-      'Dining Decor',
-      'Kitchen Decor',
-      'Lamps & Lighting',
-      'Indoor Plants'
+      "Furniture & Storage",
+      "Dining Decor",
+      "Kitchen Decor",
+      "Lamps & Lighting",
+      "Indoor Plants",
     ],
     electronics: [
-      'Mobile & Headphones',
-      'Laptop & Desktop',
-      'Smart wearables',
-      'Camera & Accessories',
-      'Home Appliances'
-    ]
+      "Mobile & Headphones",
+      "Laptop & Desktop",
+      "Smart wearables",
+      "Camera & Accessories",
+      "Home Appliances",
+    ],
+  };
+
+  // ✅ Function to format URLs consistently
+  const formatPath = (category, item) => {
+    const cat = category.toLowerCase();
+    // replace special chars (&), multiple spaces, then replace spaces with hyphens
+    const sub = item
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/\s+/g, " ")         // collapse multiple spaces
+      .trim()
+      .replace(/\s+/g, "-");        // convert spaces to hyphen
+
+    return `/category/${cat}/${sub}`;
   };
 
   return (
     <nav className="navigationbar">
       <div className="container">
         <ul className="nav-links1">
-          <li 
-            className={`dropdown ${activeDropdown === 'men' ? 'active' : ''}`}
-            onMouseEnter={() => handleMouseEnter('men')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link to="#">Men</Link>
-            <ul className={`dropdown-content ${activeDropdown === 'men' ? 'show' : ''}`}>
-              {menuItems.men.map((item, index) => (
-                <li key={index}><Link to="#">{item}</Link></li>
-              ))}
-            </ul>
-          </li>
-          
-          <li 
-            className={`dropdown ${activeDropdown === 'women' ? 'active' : ''}`}
-            onMouseEnter={() => handleMouseEnter('women')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link to="#">Women</Link>
-            <ul className={`dropdown-content ${activeDropdown === 'women' ? 'show' : ''}`}>
-              {menuItems.women.map((item, index) => (
-                <li key={index}><Link to="#">{item}</Link></li>
-              ))}
-            </ul>
-          </li>
-          
-          <li 
-            className={`dropdown ${activeDropdown === 'kids' ? 'active' : ''}`}
-            onMouseEnter={() => handleMouseEnter('kids')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link to="#">Kids</Link>
-            <ul className={`dropdown-content ${activeDropdown === 'kids' ? 'show' : ''}`}>
-              {menuItems.kids.map((item, index) => (
-                <li key={index}><Link to="#">{item}</Link></li>
-              ))}
-            </ul>
-          </li>
-          
-          <li 
-            className={`dropdown ${activeDropdown === 'homeDecor' ? 'active' : ''}`}
-            onMouseEnter={() => handleMouseEnter('homeDecor')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link to="#">Home Decor</Link>
-            <ul className={`dropdown-content ${activeDropdown === 'homeDecor' ? 'show' : ''}`}>
-              {menuItems.homeDecor.map((item, index) => (
-                <li key={index}><Link to="#">{item}</Link></li>
-              ))}
-            </ul>
-          </li>
-          
-          <li 
-            className={`dropdown ${activeDropdown === 'electronics' ? 'active' : ''}`}
-            onMouseEnter={() => handleMouseEnter('electronics')}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link to="#">Electronics</Link>
-            <ul className={`dropdown-content ${activeDropdown === 'electronics' ? 'show' : ''}`}>
-              {menuItems.electronics.map((item, index) => (
-                <li key={index}><Link to="#">{item}</Link></li>
-              ))}
-            </ul>
-          </li>
+          {Object.keys(menuItems).map((category) => (
+            <li
+              key={category}
+              className={`dropdown ${activeDropdown === category ? "active" : ""}`}
+              onMouseEnter={() => handleMouseEnter(category)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link to={`/category/${category.toLowerCase()}`}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </Link>
+              <ul
+                className={`dropdown-content ${
+                  activeDropdown === category ? "show" : ""
+                }`}
+              >
+                {menuItems[category].map((item, index) => (
+                  <li key={index}>
+                    <Link to={formatPath(category, item)}>
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
 
           <div className="vendor">
-            <li><Link to="#">Become a Vendor</Link></li>
-            <li><Link to="#">Download App</Link></li>
+            <li>
+              <Link to="#">Become a Vendor</Link>
+            </li>
+            <li>
+              <Link to="#">Download App</Link>
+            </li>
           </div>
         </ul>
       </div>
