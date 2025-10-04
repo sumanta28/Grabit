@@ -28,19 +28,25 @@ export default function VendorProductsPage() {
   }, []);
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
+  if (!window.confirm("Are you sure you want to delete this product?")) return;
 
-    try {
-      const token = localStorage.getItem("token");
-      await axiosInstance.delete(`/products/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      alert("✅ Product deleted");
-      fetchProducts();
-    } catch (err) {
-      console.error("Failed to delete product:", err);
-    }
-  };
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("Not authenticated");
+
+    // ✅ Correct API route for vendor delete
+    await axiosInstance.delete(`/vendors/product/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    alert("✅ Product deleted successfully!");
+    fetchProducts(); // refresh the list
+  } catch (err) {
+    alert(`❌ Failed to delete: ${err.response?.data?.message || err.message}`);
+    console.error("Failed to delete product:", err);
+  }
+};
+
 
   const handleEdit = (product) => {
     setEditingProduct(product);
