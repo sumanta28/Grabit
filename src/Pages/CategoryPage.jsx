@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../lib/axiosInstance";
 import Filters from "../Components/Filters";
+import { Link } from "react-router-dom";
 
 const normalizeCategory = (name) => {
   if (!name) return { category: "", subcategory: "" };
@@ -31,7 +32,7 @@ const CategoryPage = () => {
 
   const [allBrands, setAllBrands] = useState([]);
   const [allColors, setAllColors] = useState([]);
-   useEffect(() => {
+  useEffect(() => {
     // Reset all filters when main category changes
     setSelectedSubs([]);
     setSelectedBrands([]);
@@ -155,9 +156,10 @@ const CategoryPage = () => {
           ) : (
             <div className="grid grid-cols-4 gap-4">
               {products.map((p) => (
-                <div
-                  key={p.id || p._id || p.name} // Use a unique property, fallback to name if needed
-                  className="border border-gray-200 p-3 bg-white cursor-pointer hover:shadow-lg transition-shadow"
+                <Link
+                  to={`/product/${p._id || p.id}`}
+                  key={p._id || p.id}
+                  className="border border-gray-200 p-3 bg-white cursor-pointer hover:shadow-lg transition-shadow block"
                 >
                   <img src={p.image} alt={p.name} className="w-full h-auto" />
                   <h4 className="text-base font-bold text-black mt-2 mb-1">{p.brand}</h4>
@@ -167,7 +169,7 @@ const CategoryPage = () => {
                     {p.originalPrice && <span className="line-through text-gray-400">Rs.{p.originalPrice}</span>}
                     {p.discount && <span className="text-orange-600 font-semibold">({p.discount}% OFF)</span>}
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

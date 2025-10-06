@@ -64,7 +64,7 @@ const Nav2 = () => {
               </li>
 
               <li>
-                <Link to="#" aria-label="Cart">
+                <Link to="/cart" aria-label="Cart">
                   <ShoppingCart
                     size={22}
                     strokeWidth={1.8}
