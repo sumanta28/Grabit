@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axiosInstance from "../lib/axiosInstance";
 import Filters from "../Components/Filters";
 import { Link } from "react-router-dom";
+import { getImg } from "../lib/utils";
+
 
 const normalizeCategory = (name) => {
   if (!name) return { category: "", subcategory: "" };
@@ -46,6 +48,7 @@ const CategoryPage = () => {
     const fetchProducts = async () => {
       try {
         const res = await axiosInstance.get("/products");
+        console.log("API Response:", res.data);
         const filtered = res.data.filter((p) => {
           const { category: prodCat, subcategory: prodSub } = normalizeCategory(p.category?.name);
 
@@ -156,12 +159,15 @@ const CategoryPage = () => {
           ) : (
             <div className="grid grid-cols-4 gap-4">
               {products.map((p) => (
+                console.log(getImg(p.image)),
                 <Link
                   to={`/product/${p._id || p.id}`}
                   key={p._id || p.id}
                   className="border border-gray-200 p-3 bg-white cursor-pointer hover:shadow-lg transition-shadow block"
                 >
-                  <img src={p.image} alt={p.name} className="w-full h-auto" />
+                  <img src={getImg(p.image)} alt={p.name} className="w-full h-auto object-cover rounded" />
+                  
+
                   <h4 className="text-base font-bold text-black mt-2 mb-1">{p.brand}</h4>
                   <p className="text-sm text-gray-600 mb-2 capitalize">{p.name}</p>
                   <div className="flex items-center gap-2 flex-wrap text-sm">

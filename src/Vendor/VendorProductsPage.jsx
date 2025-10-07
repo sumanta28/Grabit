@@ -158,6 +158,7 @@ export default function VendorProductsPage() {
       const res = await axiosInstance.get("/vendors/products", {
         headers: { Authorization: `Bearer ${token}` },
       });
+       console.log(res.data)
       setProducts(res.data);
     } catch (err) {
       console.error("Failed to fetch products:", err);

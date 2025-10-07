@@ -1,20 +1,22 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-export default function Seo() {
+export default function Seo({
+  title = "Grabit – a multi-vendor online store for everything you need",
+  description = "Shop your way with Grabit – An online store designed to fit every part of your lifestyle.",
+  canonical = "https://www.grabit.com/",
+  image = "https://www.grabit.com/product-image.jpg",
+}) {
   return (
     <Helmet>
       {/* Title */}
-      <title>Grabit – a multi-vendor online store for everything you need</title>
+      <title>{title}</title>
 
       {/* Meta description */}
-      <meta
-        name="description"
-        content="Shop your way with Grabit – An online store designed to fit every part of your lifestyle."
-      />
+      <meta name="description" content={description} />
 
       {/* Canonical */}
-      <link rel="canonical" href="https://www.grabit.com/" />
+      <link rel="canonical" href={canonical} />
 
       {/* Robots */}
       <meta name="robots" content="index, follow" />
@@ -22,20 +24,11 @@ export default function Seo() {
       {/* Open Graph */}
       <meta property="og:locale" content="en_US" />
       <meta property="og:type" content="website" />
-      <meta
-        property="og:title"
-        content="Grabit – a multi-vendor online store for everything you need"
-      />
-      <meta
-        property="og:description"
-        content="Shop your way with Grabit – An online store designed to fit every part of your lifestyle."
-      />
-      <meta property="og:url" content="https://www.grabit.com/" />
-      <meta property="og:site_name" content="grabit" />
-      <meta
-        property="og:image"
-        content="https://www.grabit.com/product-image.jpg"
-      />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:site_name" content="Grabit" />
+      <meta property="og:image" content={image} />
       <meta
         property="og:image:alt"
         content="Grabit online store for lifestyle shopping across multiple categories"
@@ -45,38 +38,27 @@ export default function Seo() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@grabit" />
       <meta name="twitter:creator" content="@grabit" />
-      <meta
-        name="twitter:title"
-        content="Grabit – a multi-vendor online store for everything you need"
-      />
-      <meta
-        name="twitter:description"
-        content="Shop your way with Grabit – An online store designed to fit every part of your lifestyle."
-      />
-      <meta
-        name="twitter:image"
-        content="https://www.grabit.com/product-image.jpg"
-      />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
 
       {/* Structured Data */}
       <script type="application/ld+json">{`
         {
           "@context": "https://schema.org",
           "@type": "Service",
-          "@id": "https://www.grabit.com/#service",
+          "@id": "${canonical}#service",
           "name": "Grabit",
-          "description": "Grabit is a multi-vendor ecommerce service that connects buyers and sellers on a single platform.",
-          "disambiguatingDescription": "An ecommerce platform, not to be confused with delivery or cashback sites.",
-          "image": "https://www.grabit.com/assets/img/main-image.jpg",
+          "description": "${description}",
+          "image": "${image}",
           "logo": {
             "@type": "ImageObject",
             "url": "https://www.grabit.com/assets/img/logo.png"
           },
-          "url": "https://www.grabit.com/",
+          "url": "${canonical}",
           "serviceType": "Multi-vendor Ecommerce Platform",
           "category": "Ecommerce",
           "providerMobility": "stationary",
-          "termsOfService": "https://www.grabit.com/terms",
           "areaServed": {
             "@type": "Country",
             "name": "India"

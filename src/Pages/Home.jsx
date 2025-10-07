@@ -11,7 +11,12 @@ import Seo from "../Components/Seo"
 const Home = () => {
   return (
     <div>
-      <Seo/>
+       <Seo
+        title="Grabit – Discover the best products online"
+        description="Find exclusive deals and the latest trends on Grabit, your go-to multi-vendor shopping platform."
+        canonical="https://www.grabit.com/home"
+        image="https://www.grabit.com/assets/img/home-banner.jpg"
+      />
       <Hero />
       <Cards />
       <Coupon />
