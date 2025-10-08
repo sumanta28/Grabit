@@ -114,11 +114,13 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../lib/axiosInstance";
 import { getImg } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
+import { useNotification } from "../context/NotificationContext";
 
 export default function BuyerOrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { addNotification } = useNotification();
 
   useEffect(() => {
     fetchOrders();

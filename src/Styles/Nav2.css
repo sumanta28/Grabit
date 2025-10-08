@@ -179,3 +179,18 @@
   .search { display: none; } 
   .nav-links li span { display: none; } 
 }
+/* Hover for user icon, notification, wishlist, cart */
+.nav-links li a:hover,
+.nav-links li .user-icon:hover,
+.nav-links li .flex div:hover {
+  color: var(--navy, #0D263C); /* Changes text color */
+  transform: translateY(-2px);
+}
+
+/* Make icon and SVG fill follow parent color */
+.nav-links li a:hover .nav-icon,
+.nav-links li .user-icon:hover .nav-icon,
+.nav-links li .flex div:hover svg {
+  stroke: none !important;
+  fill: currentColor !important;
+}

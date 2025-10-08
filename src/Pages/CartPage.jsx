@@ -287,6 +287,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../lib/axiosInstance";
 import { ShoppingBag, Trash2, Plus, Minus, ArrowRight } from "lucide-react";
 import { useNotification } from "../context/NotificationContext";
+import { Link } from "react-router-dom";
 
 export default function CartPage() {
   const [cart, setCart] = useState({ items: [] });
@@ -489,14 +490,19 @@ export default function CartPage() {
                 </div>
               </div>
 
-              <button className="w-full bg-slate-900 text-white py-4 rounded-lg font-semibold hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 group mb-3">
+              <Link
+                to="/orders"
+                className="w-full bg-slate-900 text-white py-4 rounded-lg font-semibold hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 group mb-3"
+              >
                 Proceed to Checkout
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <button className="w-full border-2 border-slate-200 text-slate-700 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors">
+              </Link>
+              <Link
+                to="/"
+                className="w-full border-2 border-slate-200 text-slate-700 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center justify-center"
+              >
                 Continue Shopping
-              </button>
+              </Link>
 
               <div className="mt-6 pt-6 border-t border-slate-200">
                 <p className="text-sm text-slate-600 flex items-center gap-2">

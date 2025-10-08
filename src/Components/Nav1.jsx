@@ -13,9 +13,9 @@ const Nav1 = () => {
           </div>
 
           <div className="nav-end">
-            <li><Link to="#">Track Order</Link></li>
+            <li><Link to="/orders">Track Order</Link></li>
             <li><Link to="#">Help</Link></li>
-            <li><Link to="#">Sell on Grabit</Link></li>
+            <li><Link to="/signup">Sell on Grabit</Link></li>
           </div>
         </ul>
       </div>

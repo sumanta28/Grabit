@@ -4,7 +4,7 @@ import { Star, Heart, Truck } from "lucide-react";
 import axiosInstance from "../lib/axiosInstance";
 import Seo from "../Components/Seo"
 import { getImg } from "../lib/utils";
-
+import { useNotification } from "../context/NotificationContext";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -14,7 +14,8 @@ export default function ProductDetailPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
   const [pincode, setPincode] = useState("");
-
+  const { addNotification } = useNotification();
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -88,50 +89,50 @@ export default function ProductDetailPage() {
   const reviews = product.reviews || [];
 
 
-const buyNow = async () => {
-  if (!selectedSize && product.sizes?.length > 0) {
-    alert("Please select a size before placing the order");
-    return;
-  }
-
-  try {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Please login first to place the order");
-      navigate("/login");
+  const buyNow = async () => {
+    if (!selectedSize && product.sizes?.length > 0) {
+      alert("Please select a size before placing the order");
       return;
     }
 
-    // Step 1️⃣ Add product to cart
-    const cartPayload = {
-      productId: String(product._id),
-      quantity: 1,
-    };
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Please login first to place the order");
+        navigate("/login");
+        return;
+      }
 
-    await axiosInstance.post("/carts", cartPayload, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+      // Step 1️⃣ Add product to cart
+      const cartPayload = {
+        productId: String(product._id),
+        quantity: 1,
+      };
 
-    // Step 2️⃣ Place order (backend will read from user's cart)
-    const res = await axiosInstance.post(
-      "/orders",
-      {},
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+      await axiosInstance.post("/carts", cartPayload, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    if (res.status === 201 || res.status === 200) {
-      alert("✅ Order placed successfully!");
-     navigate("/orders"); // redirect to buyer orders page
+      // Step 2️⃣ Place order (backend will read from user's cart)
+      const res = await axiosInstance.post(
+        "/orders",
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (res.status === 201 || res.status === 200) {
+        alert("✅ Order placed successfully!");
+        addNotification("✅ Order placed successfully!", "success");
+        navigate("/orders"); // redirect to buyer orders page
+      }
+    } catch (err) {
+      console.error("❌ Error placing order:", err.response?.data || err.message);
+      alert(
+        `❌ Failed to place order: ${err.response?.data?.message || "Unknown error"
+        }`
+      );
     }
-  } catch (err) {
-    console.error("❌ Error placing order:", err.response?.data || err.message);
-    alert(
-      `❌ Failed to place order: ${
-        err.response?.data?.message || "Unknown error"
-      }`
-    );
-  }
-};
+  };
 
 
 
