@@ -20,6 +20,31 @@
 // );
 
 
+// import "./index.css";
+// import { StrictMode } from "react";
+// import { createRoot } from "react-dom/client";
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { Toaster } from "sonner";
+// import App from "./App.jsx";
+// import { BrowserRouter } from "react-router-dom";
+// import { NotificationProvider } from "./context/NotificationContext";
+
+// const queryClient = new QueryClient();
+
+// createRoot(document.getElementById("root")).render(
+//   <StrictMode>
+//     <QueryClientProvider client={queryClient}>
+//       <BrowserRouter>
+//         <NotificationProvider>
+//           <App />
+//         </NotificationProvider>
+//       </BrowserRouter>
+//       <Toaster richColors position="bottom-right" />
+//     </QueryClientProvider>
+//   </StrictMode>
+// );
+
+
 import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
@@ -36,10 +61,10 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <NotificationProvider>
+          <Toaster richColors position="bottom-right" /> {/* ✅ Moved inside */}
           <App />
         </NotificationProvider>
       </BrowserRouter>
-      <Toaster richColors position="bottom-right" />
     </QueryClientProvider>
   </StrictMode>
 );

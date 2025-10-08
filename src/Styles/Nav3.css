@@ -161,6 +161,8 @@
   background-color: transparent;
 }
 
+/* Search and User Dropdown */
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .navigationbar .nav-links1 {
