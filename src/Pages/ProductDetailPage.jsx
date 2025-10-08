@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Star, Heart, Truck } from "lucide-react";
 import axiosInstance from "../lib/axiosInstance";
 import Seo from "../Components/Seo"
+import { getImg } from "../lib/utils";
+
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -85,6 +87,54 @@ export default function ProductDetailPage() {
   const reviewCount = product.reviewCount || 0;
   const reviews = product.reviews || [];
 
+
+const buyNow = async () => {
+  if (!selectedSize && product.sizes?.length > 0) {
+    alert("Please select a size before placing the order");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please login first to place the order");
+      navigate("/login");
+      return;
+    }
+
+    // Step 1️⃣ Add product to cart
+    const cartPayload = {
+      productId: String(product._id),
+      quantity: 1,
+    };
+
+    await axiosInstance.post("/carts", cartPayload, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    // Step 2️⃣ Place order (backend will read from user's cart)
+    const res = await axiosInstance.post(
+      "/orders",
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    if (res.status === 201 || res.status === 200) {
+      alert("✅ Order placed successfully!");
+     navigate("/orders"); // redirect to buyer orders page
+    }
+  } catch (err) {
+    console.error("❌ Error placing order:", err.response?.data || err.message);
+    alert(
+      `❌ Failed to place order: ${
+        err.response?.data?.message || "Unknown error"
+      }`
+    );
+  }
+};
+
+
+
   return (
     <>
       <Seo
@@ -106,20 +156,22 @@ export default function ProductDetailPage() {
             {/* Thumbnails */}
             <div className="flex flex-col gap-2">
               <img
-                src={product.image}
+                src={getImg(product.image)}
                 alt={product.name}
                 className={`w-16 h-20 object-cover border-2 rounded cursor-pointer ${selectedImage === product.image ? 'border-pink-500' : 'border-gray-200'}`}
                 onClick={() => setSelectedImage(product.image)}
               />
+
               {product.images && product.images.map((img, i) => (
                 <img
                   key={i}
-                  src={img}
+                  src={getImg(img)}
                   className={`w-16 h-20 object-cover border-2 rounded cursor-pointer ${selectedImage === img ? 'border-pink-500' : 'border-gray-200'}`}
                   alt="thumbnail"
                   onClick={() => setSelectedImage(img)}
                 />
               ))}
+
             </div>
 
             {/* Main image */}
@@ -128,10 +180,11 @@ export default function ProductDetailPage() {
                 <Heart className="w-4 h-4 text-gray-600" />
               </button>
               <img
-                src={selectedImage}
+                src={getImg(selectedImage)}
                 alt={product.name}
                 className="w-full h-auto rounded-lg"
               />
+
             </div>
           </div>
 
@@ -219,16 +272,20 @@ export default function ProductDetailPage() {
               </button>
 
 
-              <button className="flex-1 bg-white border-2 border-gray-300 py-2 rounded text-sm font-semibold hover:border-gray-400">
+              <button
+                onClick={buyNow}
+                className="flex-1 bg-white border-2 border-gray-300 py-2 rounded text-sm font-semibold hover:border-gray-400"
+              >
                 BUY NOW
               </button>
+
             </div>
 
             {/* Delivery options */}
             <div className="mb-4 border rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2 text-xs font-semibold">
                 <Truck className="w-4 h-4" />
-                DELIVERY OPTIONS
+                Delivery Options
               </div>
               <div className="flex gap-2">
                 <input
@@ -246,11 +303,24 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Benefits */}
-            <div className="space-y-1 text-xs mb-4">
-              <p className="font-medium">100% ORIGINAL PRODUCTS</p>
-              <p>PAY ON DELIVERY MIGHT BE AVAILABLE</p>
-              <p>EASY 7 DAYS RETURNS AND EXCHANGES</p>
+            <div className="border-t pt-4 mt-4">
+              <h4 className="text-sm font-semibold text-gray-800 mb-3">Why Buy From Us</h4>
+              <ul className="space-y-3 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 mt-1">✔</span>
+                  <span className="font-medium">100% Original Products</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-500 mt-1">💵</span>
+                  <span>Pay on Delivery Available</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-purple-500 mt-1">🔄</span>
+                  <span>Easy 7-Day Returns & Exchanges</span>
+                </li>
+              </ul>
             </div>
+
 
             {/* Best Offers */}
             {product.offers && product.offers.length > 0 && (
@@ -271,62 +341,56 @@ export default function ProductDetailPage() {
             )}
 
             {/* Product Details */}
-            <div className="border-t pt-3">
-              <button className="flex items-center justify-between w-full text-xs font-semibold mb-2">
-                <span>PRODUCT DETAILS</span>
-                <span>▲</span>
+            <div className="border-t pt-4 mt-4">
+              {/* Header */}
+              <button className="flex items-center justify-between w-full text-sm font-semibold mb-3 hover:text-blue-600 transition-colors">
+                <span>Product Details</span>
+                <span className="transform rotate-180">▲</span>
               </button>
-              <div className="grid grid-cols-2 gap-2 text-xs">
+
+              {/* Details Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
                 {product.material && (
-                  <div>
-                    <p className="text-gray-600">Material:</p>
-                    <p className="font-medium">{product.material}</p>
-                  </div>
-                )}
-                {product.fit && (
-                  <div>
-                    <p className="text-gray-600">Fit:</p>
-                    <p className="font-medium">{product.fit}</p>
-                  </div>
-                )}
-                {product.sleeves && (
-                  <div>
-                    <p className="text-gray-600">Sleeves:</p>
-                    <p className="font-medium">{product.sleeves}</p>
-                  </div>
-                )}
-                {product.pattern && (
-                  <div>
-                    <p className="text-gray-600">Pattern:</p>
-                    <p className="font-medium">{product.pattern}</p>
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase tracking-wide">Material</span>
+                    <span className="font-medium">{product.material}</span>
                   </div>
                 )}
                 {product.color && (
-                  <div>
-                    <p className="text-gray-600">Color:</p>
-                    <p className="font-medium">{product.color}</p>
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase tracking-wide">Color</span>
+                    <span className="font-medium">{product.color}</span>
                   </div>
                 )}
                 {product.occasion && (
-                  <div>
-                    <p className="text-gray-600">Occasion:</p>
-                    <p className="font-medium">{product.occasion}</p>
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase tracking-wide">Occasion</span>
+                    <span className="font-medium">{product.occasion}</span>
                   </div>
                 )}
                 {product.productType && (
-                  <div>
-                    <p className="text-gray-600">Product Type:</p>
-                    <p className="font-medium">{product.productType}</p>
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase tracking-wide">Product Type</span>
+                    <span className="font-medium">{product.productType}</span>
                   </div>
                 )}
                 {product.neck && (
-                  <div>
-                    <p className="text-gray-600">Neck:</p>
-                    <p className="font-medium">{product.neck}</p>
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase tracking-wide">Neck</span>
+                    <span className="font-medium">{product.neck}</span>
                   </div>
                 )}
               </div>
+
+              {/* Optional Description */}
+              {product.description && (
+                <div className="mt-4 text-gray-600 text-sm leading-relaxed">
+                  <h4 className="font-semibold mb-1">Description:</h4>
+                  <p>{product.description}</p>
+                </div>
+              )}
             </div>
+
           </div>
         </div>
 
@@ -400,7 +464,7 @@ export default function ProductDetailPage() {
                     }
                   }}
                 >
-                  <img src={item.image} alt={item.name} className="w-full h-48 object-cover" />
+                  <img src={getImg(item.image)} alt={item.name} className="w-full h-48 object-cover" />
                   <div className="p-2">
                     <h4 className="font-semibold text-xs">{item.brand}</h4>
                     <p className="text-xs text-gray-500 mb-1 truncate">{item.name}</p>

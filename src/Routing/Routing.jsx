@@ -12,6 +12,8 @@ import CategoryPage from "../Pages/CategoryPage";
 import VendorCategoriesPage from "../Vendor/VendorCategoriesPage";
 import ProductDetailPage from "../Pages/ProductDetailPage.jsx";
 import CartPage from  "../Pages/CartPage.jsx"
+import SearchPage from "../Pages/SearchPage.jsx"
+import BuyerOrdersPage from "../Pages/BuyerOrdersPage.jsx";
 
 function Routing() {
   return (
@@ -39,6 +41,12 @@ function Routing() {
 
       {/* Product Detail Page */}
       <Route path="/product/:id" element={<ProductDetailPage />} />
+
+      {/* Search Page */} 
+      <Route path="/search" element={<SearchPage />} />
+
+    <Route path="/orders" element={<BuyerOrdersPage />} />
+
     </Routes>
   );
 }
